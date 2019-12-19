@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
@@ -14,13 +14,13 @@ export default function CharacterList() {
       setCharacter(res.data.results)
     })
     .catch(err =>{
-      console.log("nooo", error)
+      console.log("nooo", err)
     })
   }, []);
 
   return (
     <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
+      {/* <h2>TODO: `array.map()` over your state here!</h2> */}
       {character.map(person =>(
         <div key ={person.id}>
           <img className="person-img" src={person.image}/>
