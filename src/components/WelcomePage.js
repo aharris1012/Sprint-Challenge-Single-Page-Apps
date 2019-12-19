@@ -1,4 +1,5 @@
 import React from "react";
+import CharacterCard from "react-router-dom";
 
 export default function WelcomePage() {
   return (
