@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header.js";
-import {Route} from "react-route-dom";
+import {Route} from "react-router-dom";
 import WelcomePage from "./components/WelcomePage";
 import CharacterCard from "./components/CharacterCard";
 import CharacterList from "./components/CharacterList";
