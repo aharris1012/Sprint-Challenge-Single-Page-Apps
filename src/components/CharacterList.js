@@ -1,49 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SearchForm from "./components/SearchForm";
+import SearchForm from "./SearchForm";
+import CharacterCard from "./CharacterCard";
+import {Link} from "react-router-dom";
+
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
-  const [character, setCharacter] = useState([]);
-
-
-
-  //Search stuff//
-  const setSearch = NameString =>{
-    const ele= character.filter(info =>
-      info.name.toUpperCase().includes (NameString.toUpperCase()));
-
-      setCharacter(ele)
-  }
-
-
-  //API//
+  const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-    axios.get('https://rickandmortyapi.com/api/character/')
-    .then (res =>{
-      console.log ( "Pickles", res.data.results)
-      setCharacter(res.data.results)
+    axios
+    .get("https://rickandmortyapi.com/api/character/")
+    .then(data => {
+      setInfo(data.data.results);
     })
-    .catch(err =>{
-      console.log("nooo", err)
-    })
-  }, []);
+    .catch(error => {console.log("There was an error", error);
+  })
+}, []);
+  console.log(info)
 
   return (
-    <section className="character-list">
-      <SearchForm character={character} Search ={setSearch}/>
-      {/* <h2>TODO: `array.map()` over your state here!</h2> */}
-      {character.map(person =>(
-        <div key ={person.id}>
-          <img className="person-img" src={person.image}/>
-        <h2>{person.name}</h2>
-        <h3>{person.species}</h3>
-
-        </div>
-      ))}
-    </section>
-  );
+    <div>
+      <section className="character-list">
+        {info.map(char => (
+        <CharacterCard url={char.image} names={char.name} gender={char.gender} local={char.location.name} species={char.species} status={char.status} />
+        ))};
+      </section>
+    </div>
+);
 }
