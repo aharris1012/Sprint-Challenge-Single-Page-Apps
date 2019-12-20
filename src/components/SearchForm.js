@@ -43,7 +43,7 @@ export function SearchForm() {
     });
     setSearchResults(results);
 
-  }, [searchTerm]);
+  }, []);
 
   return (
     <section className="search-form">

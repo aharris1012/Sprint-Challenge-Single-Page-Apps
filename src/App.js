@@ -3,7 +3,7 @@ import Header from "./components/Header.js";
 import {Route,Link,} from "react-router-dom";
 import WelcomePage from "./components/WelcomePage";
 import CharacterList from "./components/CharacterList";
-import SearchForm from "./components/SearchForm";
+import {SearchForm} from "./components/SearchForm";
 import styled from "styled-components";
 
 const Head = styled.h3`

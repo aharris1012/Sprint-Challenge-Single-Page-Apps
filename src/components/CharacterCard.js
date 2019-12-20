@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CharacterList from "./CharacterList";
 
 // export default function CharacterCard() {
 //   // return <span>todo: character</span>;
@@ -14,15 +15,6 @@ border: 1px dotted green;
 margin: 2%;
 padding: 1%;
 `
-
-
-
-
-
-
-
-
-
 export default function CharacterCard({ name, image, species}) {
   return (
     <card>
