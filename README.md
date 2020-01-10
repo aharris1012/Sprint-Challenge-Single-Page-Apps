@@ -27,6 +27,11 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
+- The changes happend on the client-side, which means they dont have to wait for the server to fully upload.
+
+-Give devs more control over the look.
+
+
 > Answer:
 
 ## Project Set Up

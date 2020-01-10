@@ -1,11 +1,22 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import styled from "styled-components";
+
+
 
 export default function Header() {
-  return (
-    <header className="ui centered">
-      <h1 className="ui center">Rick &amp; Morty Fan Page</h1>
 
-    </header>
+  const Heading = styled.h2`
+    font-size: 20px;
+    text-shadow: 2px 2px green;
+    text-align: center;
+  `
+
+  return (
+    <div>
+    <Heading className="ui centered">
+      <h1 className="ui center">Rick &amp; Morty Fan Page</h1>
+    </Heading>
+    </div>
   );
 }
+

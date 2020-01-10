@@ -1,62 +1,46 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CharacterCard from "./CharacterCard"
+// import styled from "styled-components";
+import CharacterCard from "./CharacterCard";
 import {Link} from "react-router-dom";
-import styled from "styled-components";
-import CharacterList from "./CharacterList";
 
 
 
-// const Input =styled.input
+export default function SearchForm() {
+
+  const [data, setData] = useState([]);
+  const [query, setQuery] = useState("");
+
+useEffect(()=>{
+  axios.get("https://rickandmortyapi.com/api/character/") 
+  .then (response =>{
+    const characters = response.data.results.filter(char => char.name.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    setData (characters);
+  });
+},[query]);
+
+
+const handleInputChange = event => {
+  setQuery(event.target.value);
+};
+return (
+  <div >
+    <form > 
+      <input
+      id="name" type="text" name="textfield" placeholder="Search" value={query} onChange={handleInputChange}/>
 
 
 
+    <Link to="/"><button>Home
+          </button></Link>
+    </form>
 
-
-// const Button =styled.button`
-// color: #00cc00;
-// margin:2 %;
-// padding:3%;
-// border: 1px dotted #00cc00;
-// `
-export function SearchForm() {
-
-  const [characters, setCharacter] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(characters);
-
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-  };
-
-  useEffect(() => {
-    axios
-      .get("https://rickandmortyapi.com/api/character/")
-      .then(data => {
-        setCharacter(data.data.results);
-      })
-      .catch(error => {console.log("There's an error", error);
-    });
-
-    const results = characters.filter(character => {
-      return character.name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    setSearchResults(results);
-
-  }, []);
-
-  return (
-    <section className="search-form">
-     <form>
-       <label htmlFor="title">Search:</label>
-       <input id="title" type="text" name="title" onChange={handleChange} 
-       value={searchTerm} />
-     </form>
-     {searchResults.map(char =>(
-       <CharacterCard url={char.image} names={char.name} gender={char.gender} local={char.location.name} specieis={char.species} />
-     ))}
-    </section>
-
-  );
+    {data.map((char => {
+  return(<CharacterCard key={char.id} name={char.name} species ={char.species} status={char.status}/>)
 }
+))}
 
+</div>
+)}

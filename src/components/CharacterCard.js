@@ -1,26 +1,38 @@
+
+
+
 import React from "react";
-import styled from "styled-components";
-import CharacterList from "./CharacterList";
-
-// export default function CharacterCard() {
-//   // return <span>todo: character</span>;
+import styled from "styled-components"
 
 
+export default function CharacterCard(props) {
 
-const card=styled.div`
+    const Card = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    margin: 5% 20%
+    border: solid 5px black;
+    `
+    const Header = styled.h2`
+    font-size: 25px;
+    text-shadow: 2px 2px purple;
+    `
 
 
-color:green;
-border: 1px dotted green;
-margin: 2%;
-padding: 1%;
-`
-export default function CharacterCard({ name, image, species}) {
-  return (
-    <card>
-      <img src={image} alt='rick & morty characters'/>
-      <h3>Name: {name}</h3>
-      <p>Species:{species}</p>
-    </card>
-  );
+  return(
+    <Card>
+
+      <Header>{props.name}</Header>
+        <p>Species: {props.species}</p>
+        <p>Status: {props.status}</p>
+        <p>Location: {props.location}</p>
+
+    </Card>
+
+
+  )
 }
